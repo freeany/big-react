@@ -16,9 +16,11 @@ export function scheduleUpdateOnFiber(fiber: FiberNode) {
 	renderRoot(root);
 }
 
+// 一直向上，遍历到我们的fiberRootNode
 function markUpdateFromFiberToRoot(fiber: FiberNode) {
 	let node = fiber;
 	let parent = node.return;
+	// 如果不是null，那代表parent是一个普通的fiber节点， 而不是hostRootFiber
 	while (parent !== null) {
 		node = parent;
 		parent = node.return;
@@ -50,6 +52,7 @@ function workLoop() {
 	}
 }
 
+// 执行工作单元
 function performUnitOfWork(fiber: FiberNode) {
 	const next = beginWork(fiber);
 	fiber.memoizedProps = fiber.pendingProps;

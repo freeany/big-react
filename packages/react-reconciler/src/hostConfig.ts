@@ -1,1 +1,1 @@
-export type Container = any;
+export type Container = any; // 表示描述宿主环境
